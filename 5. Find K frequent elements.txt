@@ -1,0 +1,38 @@
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+
+        vector<int>result;
+
+        //Count adjacent numbers and store it in map
+        unordered_map<int,int>table;
+
+        for(int i=0;i<nums.size();i++){
+            if(table.find(nums[i])==table.end()){
+                table[nums[i]] = 1;
+            }else{
+                table[nums[i]]++;
+            }
+        }
+
+        //Put it into vector of pairs
+        vector<pair<int,int>>store;
+        pair<int,int>m;
+        for(auto x:table){
+           m = make_pair(x.second, x.first);
+           store.push_back(m);
+        }
+
+        //sort vector
+        sort(store.rbegin(),store.rend());
+
+
+        //print results
+        for(int i=0;i<k;i++){
+            result.push_back(store[i].second);
+        }
+
+        return result;
+        
+    }
+};

@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+
+        int map[26] = {};
+
+
+        for(auto x:s){
+            map[x-'a']+=1;
+        }
+
+
+        for(auto x:t){
+            map[x-'a']--;
+        }
+
+        for(int i:map){
+            if(i!=0)return false;
+        }
+
+        return true;
+        
+    }
+};

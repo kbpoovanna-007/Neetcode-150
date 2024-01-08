@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int maxArea(vector<int>& array) {
+
+        int left = 0;
+        int right = array.size()-1;
+        int breadth = array.size()-1;
+        int height = 0;
+        int vol = 0;
+
+
+        int max = 0;
+       
+        while(left<right){
+            if(array[left]<=array[right]){
+                height = array[left];
+            }else{
+                height = array[right];
+            }
+
+            if(array[left]<array[right]){
+                left++;
+            }else{
+                right--;
+            }
+            
+
+             
+             vol = height*breadth;
+             max = (max>vol)?max:vol;
+             breadth--;
+        }
+
+
+        return max;
+        
+    }
+};

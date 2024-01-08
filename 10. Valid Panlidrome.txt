@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isPalindrome(string s) {
+
+        string side="";
+
+        for(char x: s){
+            if(!isalpha(x) && !isdigit(x))continue;
+            if(isupper(x)){
+                x = tolower(x);   
+            }
+            side+=x;
+        }
+
+        s = side;
+
+        reverse(side.begin(), side.end());
+        if(s==side)return true;
+
+        return false;
+        
+    }
+};

@@ -1,0 +1,41 @@
+class Solution {
+public:
+    bool isValid(string s) {
+
+        stack<char>store;
+
+        for(char x: s){
+
+            if(x=='(' || x=='[' || x=='{'){
+                store.push(x);
+            }else{
+                if(store.empty())return false;
+                char t = store.top();
+                if(x=='}'){
+                    if(t=='{'){
+                        store.pop();
+                    }else{
+                        return false;
+                    }
+                }else if(x==')'){
+                      if(t=='('){
+                        store.pop();
+                    }else{
+                        return false;
+                    }
+                }else{
+                    if(t=='['){
+                        store.pop();
+                    }else{
+                        return false;
+                    }
+
+                }
+            }
+        }
+
+        if(store.empty())return true;
+        return false;
+        
+    }
+};

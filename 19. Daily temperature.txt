@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> dailyTemperatures(vector<int>& temperatures) {
+
+        int n = temperatures.size();
+        vector<int>result(n,0);
+        if(n==0 || n==1)return result;
+
+        stack<pair<int,int>>store;
+        store.push(make_pair(temperatures[0],0));
+
+        int index;
+        for(int i=1;i<n;i++){
+            while(!store.empty() && temperatures[i]>store.top().first){
+                index = store.top().second;
+                store.pop();
+                result[index] = i-index; 
+            }
+
+            store.push(make_pair(temperatures[i], i));
+        }
+
+        return result;
+    }
+};
